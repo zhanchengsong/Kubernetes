@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+  annotations:  
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "30720m"
+spec:
+  tls:
+  - hosts:
+    - echo1.newgrad.dev
+    - jenkins.newgrad.dev
+    - docker.newgrad.dev
+    - oj.newgrad.dev
+    secretName: diet4coke
+  rules:
+  - host: echo1.newgrad.dev
+    http:
+      paths:
+      - backend:
+          serviceName: echo1
+          servicePort: 80
+  - host: jenkins.newgrad.dev
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins
+          servicePort: 8080
+  - host: docker.newgrad.dev
+    http:
+      paths:
+      - backend:
+          serviceName: docker-registry
+          servicePort: 5000
+  - host: oj.newgrad.dev
+    http:
+      paths:
+      - backend:
+          serviceName: oj-server
+          servicePort: 3000

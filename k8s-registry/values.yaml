@@ -1,0 +1,13 @@
+storage: s3
+
+secrets:
+  htpasswd: ""
+  s3:
+    accessKey: OY6NBB6SY62UWS3A7QTA
+    secretKey: E62RKfO2iuYlmvrWhtDjqycu21IYE/rnml46DJrFSsE
+
+s3:
+  region: nyc3
+  regionEndpoint: nyc3.digitaloceanspaces.com
+  secure: true
+  bucket: k8s-docker
